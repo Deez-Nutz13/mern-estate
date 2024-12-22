@@ -8,6 +8,7 @@ export default function Profile() {
     const fileref = useRef(null)
     const {currentUser, loading, error} = useSelector((state) => state.user)
     const [formData, setFormData] = useState({})
+    const [userSuccess, setUserSuccess] = useState(false)
     
     const dispatch = useDispatch()
 
@@ -34,6 +35,7 @@ export default function Profile() {
                 return
             }
             dispatch(updateUserSuccess(data))
+            setUserSuccess(true)
         } catch (error) {
             dispatch(updateUserFailure(error.message))
         }
@@ -69,7 +71,8 @@ export default function Profile() {
                 <span className="text-red-700 cursor-pointer ">Delete Account</span>
                 <span className="text-red-700 cursor-pointer ">Sign Out</span>
             </div>
-            <p>{error ? error : ''}</p>
+            <p className="text-red-700 mt-5">{error ? error : ''}</p>
+            <p className="text-green-700 mt-5">{userSuccess ? 'updated successfully' : ''}</p>
         </div>
     )
 }

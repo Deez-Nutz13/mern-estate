@@ -26,7 +26,7 @@ const userSlice = createSlice({
         },
 
         updateUserStart: (state, action) => {
-            state.loading = false
+            state.loading = true
         },
 
         updateUserSuccess: (state, action) => {
